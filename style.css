@@ -22,51 +22,118 @@ body {
 /* TEXT COLORS */
 .text-blue { color: var(--ip-blue-neon); }
 
-/* HEADER */
+/* =========================================
+   SOLUCIÓN DEFINITIVA HEADER AMONTONADO
+   ========================================= */
+
 .main-header {
-    background-color: rgba(0,0,0,0.95);
-    height: 75px;
-    display: flex;
-    align-items: center;
-    position: sticky;
+    background-color: #000000;
+    width: 100%;
+    position: fixed;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid var(--ip-blue-neon); /* Línea azul neón */
+    border-bottom: 2px solid #2E5BFF;
+    height: auto !important;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
 }
 
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.logo { font-size: 1.6rem; font-weight: 900; color: var(--ip-white); }
+.nav-wrapper {
 
-.desktop-nav { display: none; } /* Mobile First */
+max-width: 1200px; /* Esto lo alinea con tus otros contenedores */
+    margin: 0 auto;    /* Esto lo centra en la pantalla */
+    width: 100%;       /* Asegura que ocupe el espacio disponible */
 
-/* BOTONES */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.logo {
+    font-size: 1.2rem !important;
+    font-weight: 800;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.text-blue {
+    color: #2E5BFF !important;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 1;
+    justify-content: flex-end;
+}
+
+/* --- 1. RESTAURACIÓN DE TAMAÑOS ORIGINALES (Botones generales de la página) --- */
+/* Esto asegura que los botones fuera del header recuperen su tamaño grande */
+
 .btn-neon {
-    background-color: var(--ip-blue-neon);
-    color: var(--ip-white);
-    padding: 12px 24px;
+    background-color: #2E5BFF;
+    color: #FFFFFF;
+    padding: 15px 35px; /* Tamaño grande restaurado */
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 1rem; /* Letra grande restaurada */
     display: inline-block;
-    transition: 0.3s;
     box-shadow: 0 0 10px rgba(46, 91, 255, 0.5);
 }
 
-.btn-neon:hover {
-    box-shadow: 0 0 20px rgba(46, 91, 255, 0.8);
-    transform: translateY(-2px);
-}
-
-.btn-text { color: var(--ip-white); text-decoration: none; font-size: 0.9rem; margin-right: 15px; font-weight: bold; }
-
-.btn-outline {
-    border: 2px solid var(--ip-blue-neon);
-    color: var(--ip-white);
-    padding: 10px 20px;
+.btn-text {
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
-    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* --- 2. TAMAÑOS ESPECÍFICOS *SOLO* PARA LOS BOTONES DEL HEADER --- */
+/* Al usar el selector '.header-actions', indicamos que estos estilos solo aplican a los botones de arriba */
+
+.header-actions .btn-text {
+    font-size: 0.85rem; /* Letra más pequeña solo arriba */
+    white-space: nowrap;
+}
+
+.header-actions .btn-neon {
+    padding: 10px 20px; /* Más compacto solo arriba */
+    font-size: 0.85rem; /* Letra más pequeña solo arriba */
+    white-space: nowrap;
+}
+
+/* =========================================
+   AJUSTE PARA PANTALLAS EXTREMADAMENTE PEQUEÑAS
+   (Menos de 360px de ancho)
+   ========================================= */
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1rem !important;
+        margin-right: 5px;
+    }
+    .header-actions {
+        gap: 8px;
+    }
+    /* Estos ajustes también se aplican solo a los botones del header */
+    .header-actions .btn-neon {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+    .header-actions .btn-text {
+        font-size: 0.75rem;
+    }
 }
 
 /* HERO */
@@ -102,9 +169,24 @@ body {
 /* WHY US (@imagen4/5) */
 .why-us { padding: 60px 0; text-align: center; background-color: var(--ip-black); }
 .section-title { font-size: 2rem; font-weight: 900; margin-bottom: 40px; color: var(--ip-white); }
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.why-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* Cambiamos a 3 columnas */
+    gap: 20px; 
+    padding: 40px 0;
+    align-items: start; /* Alineación al inicio para poder desplazar */
+}
 .why-item { background: var(--ip-grey-dark); padding: 25px; border-radius: 15px; border-bottom: 3px solid var(--ip-blue-neon); }
-.why-item i { font-size: 2.2rem; color: var(--ip-blue-neon); margin-bottom: 15px; }
+/* EFECTO NEON EXCLUSIVO PARA EL ICONO DE GLOBO */
+/* EFECTO GENERAL PARA TODOS LOS ICONOS */
+.why-item i { 
+    font-size: 2.2rem; 
+    color: var(--ip-blue-neon); 
+    margin-bottom: 15px; 
+    display: block;
+    /* Efecto de brillo para Font Awesome */
+    filter: drop-shadow(0 0 8px var(--ip-blue-neon));
+}
 .why-item h4 { color: var(--ip-white); margin-bottom: 8px; font-size: 0.9rem; }
 .why-item p { color: var(--ip-grey-text); font-size: 0.75rem; }
 
@@ -144,4 +226,83 @@ body {
 .about-text .btn-outline:hover {
     background-color: #1a44d6 !important;
     transform: scale(1.05);
+}
+/* AJUSTE MÓVIL: SOLO EL ESPACIO INTERNO DEL BOTÓN */
+@media (max-width: 480px) {
+    .btn-header {
+        /* Reducimos el relleno (padding) para que el botón sea más flaco */
+        padding: 6px 10px !important; 
+        
+        /* NO tocamos font-family, NO tocamos font-size */
+        /* Solo nos aseguramos de que el botón no empuje a los demás */
+        display: inline-flex !important;
+        align-items: center;
+        white-space: nowrap !important;
+    }
+
+    .nav-wrapper {
+        gap: 5px !important; /* Une el logo con los botones para que quepan */
+    }
+}
+/* =========================================
+/* =========================================
+   FORZADO DE ANCHO PARA ESCRITORIO (1024px en adelante)
+   ========================================= */
+@media (min-width: 1024px) {
+
+    /* 1. Forzamos a que todos los contenedores de la página se expandan */
+    .container, 
+    .nav-wrapper, 
+    .pricing-section .container, 
+    .about-gym .container {
+        max-width: 1500px !important; /* Ancho mucho más grande */
+        width: 95% !important;        /* Que use casi toda la pantalla */
+        margin: 0 auto !important;    /* Siempre centrado */
+    }
+
+    /* 2. Hacemos el Header más alto y grande */
+    .main-header {
+        height: 100px !important; 
+    }
+
+    .logo {
+        font-size: 2rem !important; /* Logo más grande */
+    }
+
+    .header-actions .btn-neon {
+        padding: 15px 30px !important; /* Botón azul más grande en PC */
+        font-size: 1.1rem !important;
+    }
+
+    /* 3. Agrandamos las Cards de los Planes */
+    .pricing-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* Forzamos 4 columnas */
+        gap: 40px !important; /* Más separación */
+    }
+
+    .plan-card {
+        padding: 50px 30px !important; /* Más gordas */
+        transform: scale(1.1);         /* Las agrandamos un 10% extra */
+    }
+
+    .price {
+        font-size: 3.5rem !important; /* Precios gigantes */
+    }
+}
+/* EFECTO PODIO INVERTIDO (Solo para pantallas grandes) */
+@media (min-width: 768px) {
+    .why-grid .why-item:nth-child(2) {
+        transform: translateY(45px); /* Empuja la card del medio hacia abajo */
+    }
+}
+
+/* AJUSTE PARA MÓVIL (Para que no se rompa el diseño) */
+@media (max-width: 767px) {
+    .why-grid { 
+        grid-template-columns: 1fr; /* Una sola columna en celular */
+        gap: 15px;
+    }
+    .why-grid .why-item:nth-child(2) {
+        transform: none; /* Quitamos el desplazamiento en móvil */
+    }
 }
