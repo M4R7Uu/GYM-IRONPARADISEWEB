@@ -6,6 +6,20 @@
     --ip-grey-dark: #121212;
     --ip-grey-text: #E0E0E0; /* Blanco suave para textos secundarios */
 }
+/* =========================================
+   DESPLAZAMIENTO SUAVE GLOBAL (PRO)
+   ========================================= */
+html {
+    scroll-behavior: smooth; /* Esta es la magia */
+}
+
+/* AJUSTE PARA HEADER FIJO: 
+   Evita que el menú de arriba tape el título al saltar. 
+   Usa un margen superior solo cuando se salta por ancla. */
+.pricing-section:target,
+#pricing-section:target {
+    scroll-margin-top: 100px; /* Ajusta este número según la altura real de tu header */
+}
 
 /* BASE */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -167,38 +181,197 @@ max-width: 1200px; /* Esto lo alinea con tus otros contenedores */
 .features { list-style: none; margin-bottom: 25px; color: var(--ip-grey-text); }
 
 /* WHY US (@imagen4/5) */
-.why-us { padding: 60px 0; text-align: center; background-color: var(--ip-black); }
-.section-title { font-size: 2rem; font-weight: 900; margin-bottom: 40px; color: var(--ip-white); }
+/* =========================================
+   POR QUÉ ESTE GYM (@imagen4/5)
+   ========================================= */
+.why-us {
+    /* El padding de 120px abajo da espacio al efecto de la card central */
+    padding: 80px 0 120px !important; 
+    background-color: var(--ip-black);
+    position: relative;
+    z-index: 10; /* Mantiene la sección por encima de la línea del footer */
+}
+
 .why-grid { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* Cambiamos a 3 columnas */
-    gap: 20px; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
     padding: 40px 0;
-    align-items: start; /* Alineación al inicio para poder desplazar */
+    align-items: start;
 }
-.why-item { background: var(--ip-grey-dark); padding: 25px; border-radius: 15px; border-bottom: 3px solid var(--ip-blue-neon); }
-/* EFECTO NEON EXCLUSIVO PARA EL ICONO DE GLOBO */
-/* EFECTO GENERAL PARA TODOS LOS ICONOS */
+
+.why-item { 
+    background: var(--ip-grey-dark); 
+    padding: 30px; 
+    border-radius: 15px; 
+    border-bottom: 3px solid var(--ip-blue-neon);
+    transition: transform 0.3s ease;
+}
+
+/* EFECTO PODIO INVERTIDO (Solo Escritorio) */
+@media (min-width: 768px) {
+    .why-grid .why-item:nth-child(2) {
+        /* Desplazamos la card central hacia abajo */
+        transform: translateY(50px); 
+    }
+}
+
 .why-item i { 
     font-size: 2.2rem; 
     color: var(--ip-blue-neon); 
     margin-bottom: 15px; 
     display: block;
-    /* Efecto de brillo para Font Awesome */
     filter: drop-shadow(0 0 8px var(--ip-blue-neon));
 }
-.why-item h4 { color: var(--ip-white); margin-bottom: 8px; font-size: 0.9rem; }
-.why-item p { color: var(--ip-grey-text); font-size: 0.75rem; }
 
-/* FOOTERS (@imagen6) */
-.social-footer { padding: 50px 0; text-align: center; border-top: 1px solid #222; }
-.social-links { display: flex; justify-content: center; gap: 30px; margin-top: 25px; }
-.social-links a { color: var(--ip-white); font-size: 1.6rem; transition: 0.3s; }
-.social-links a:hover { color: var(--ip-blue-neon); }
+/* =========================================
+   REDISEÑO DE FOOTER UNIFICADO
+   ========================================= */
+.main-footer {
+    background-color: #050505;
+    padding: 60px 0 30px;
+    /* Línea azul neón de separación */
+    border-top: 2px solid var(--ip-blue-neon); 
+    text-align: center;
+    position: relative;
+    z-index: 5; /* Queda visualmente detrás de las cards de beneficios */
+}
 
-.dev-footer { background: #050505; padding: 25px 0; text-align: center; font-size: 0.8rem; color: #666; }
-.brand { color: var(--ip-blue-neon); font-weight: bold; text-transform: uppercase; }
+/* --- ESTILO IFCODE (TU FIRMA) --- */
+a.brand-ifcode {
+    color: #FFFFFF !important; 
+    text-decoration: none !important;
+    font-family: 'Arial Black', sans-serif !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    display: inline-block;
+    /* Iluminación estática solicitada */
+    text-shadow: 0 0 8px rgba(255, 159, 28, 0.7); 
+    transition: 0.3s;
+}
 
+a.brand-ifcode .if-part {
+    color: #FF9F1C !important;
+}
+
+a.brand-ifcode:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 159, 28, 0.9);
+}
+/* =========================================
+   REDISEÑO DE FOOTER UNIFICADO
+   ========================================= */
+.main-footer {
+    background-color: #050505;
+    padding: 60px 0 30px;
+    border-top: 2px solid var(--ip-blue-neon);
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.footer-brand .logo {
+    margin-right: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem !important;
+}
+
+.footer-brand p {
+    color: var(--ip-grey-text);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.social-links a {
+    color: var(--ip-white);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(46, 91, 255, 0.2));
+}
+
+.social-links a:hover {
+    color: var(--ip-blue-neon);
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 10px var(--ip-blue-neon));
+}
+
+.footer-dev {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #1a1a1a;
+    width: 100%;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* --- ESTILO IFCODE --- */
+a.brand-ifcode {
+    color: #FFFFFF !important; 
+    text-decoration: none !important;
+    font-family: 'Arial Black', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+    
+    /* --- ILUMINACIÓN ESTÁTICA (PRENDIDA SIEMPRE) --- */
+    text-shadow: 0 0 8px rgba(255, 159, 28, 0.6), 
+                 0 0 15px rgba(255, 159, 28, 0.3) !important;
+    
+    transition: all 0.3s ease !important;
+}
+
+/* Color Naranja para el "IF" */
+a.brand-ifcode .if-part {
+    color: #FF9F1C !important;
+    /* Un pequeño brillo extra interno solo para las letras naranjas */
+    filter: drop-shadow(0 0 2px rgba(255, 159, 28, 0.5));
+}
+
+/* EFECTO AL PASAR EL MOUSE (Para que se sienta el click) */
+a.brand-ifcode:hover {
+    transform: scale(1.08); /* Crece un poquito al tocarlo */
+    /* El brillo se intensifica al poner el mouse */
+    text-shadow: 0 0 12px rgba(255, 159, 28, 0.9), 
+                 0 0 25px rgba(255, 159, 28, 0.5) !important;
+}
+
+
+
+/* Ajuste para escritorio */
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+    
+    .footer-dev {
+        text-align: right;
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+        width: auto;
+    }
+}
 /* ESCRITORIO */
 @media (min-width: 768px) {
     .desktop-nav { display: flex; gap: 30px; }
@@ -292,8 +465,26 @@ max-width: 1200px; /* Esto lo alinea con tus otros contenedores */
 /* EFECTO PODIO INVERTIDO (Solo para pantallas grandes) */
 @media (min-width: 768px) {
     .why-grid .why-item:nth-child(2) {
-        transform: translateY(45px); /* Empuja la card del medio hacia abajo */
+        transform: translateY(35px); /* Reducimos ligeramente de 45px a 35px */
     }
+}
+
+/* --- CONTENEDOR DE IMAGEN SECCIÓN 2 --- */
+.img-welcome-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;          /* Lo mantiene cuadrado */
+    background-color: var(--ip-black); 
+    border-radius: 15px;          /* Bordes redondeados */
+    border: 3px solid var(--ip-blue-neon); /* Borde neon azul */
+    
+    /* CARGA DE LA IMAGEN */
+    background-image: url('IMAGENES/ironparadise.webp'); 
+    background-size: cover;       /* Rellena el cuadro sin deformar */
+    background-position: center;  /* Centra la foto */
+    background-repeat: no-repeat;
+    
+    /* Brillo neon opcional para que haga juego con los iconos */
+    box-shadow: 0 0 15px rgba(46, 91, 255, 0.3);
 }
 
 /* AJUSTE PARA MÓVIL (Para que no se rompa el diseño) */
