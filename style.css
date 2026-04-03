@@ -153,7 +153,7 @@ max-width: 1200px; /* Esto lo alinea con tus otros contenedores */
 /* HERO */
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200');
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('IMAGENES/GYM 2.webp');
     background-size: cover;
     background-position: center;
     display: flex;
